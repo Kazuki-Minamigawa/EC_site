@@ -14,10 +14,12 @@
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
           <span style="color: white;"></span>
+          <%= link_to root_path do %>
+            <h1>LOGO</h1>
+          <% end %>
           <nav>
             <ul class="nav navbar-nav navbar-right">
-            <% if EndUser %>
-              <% if EndUser && end_user_signed_in? %>
+              <% if end_user_signed_in? %>
 
                 <li>
                   <%= link_to "マイページ" %>
@@ -35,22 +37,7 @@
                   <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
                 </li>
 
-              <% else %>
-                <li>
-                  <%= link_to "商品一覧" %>
-                </li>
-
-                <li>
-                  <%= link_to "新規登録", new_end_user_registration_path %>
-                </li>
-
-                <li>
-                  <%= link_to "ログイン", new_end_user_session_path %>
-                </li>
-
-              <% end %>
-            <% else %>
-              <% if admin_signed_in? %>
+              <% elsif admin_signed_in? %>
 
                 <li>
                   <%= link_to "商品一覧" %>
@@ -78,14 +65,13 @@
                 </li>
 
                 <li>
-                  <%= link_to "新規登録", new_admin_registration_path %>
+                  <%= link_to "新規登録", new_end_user_registration_path %>
                 </li>
 
                 <li>
-                  <%= link_to "ログイン", new_admin_session_path %>
+                  <%= link_to "ログイン", new_end_user_session_path %>
                 </li>
               <% end %>
-            <% end %>
             </ul>
           </nav>
         </nav>
