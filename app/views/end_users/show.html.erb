@@ -1,1 +1,49 @@
-<h1>エンドユーザー#マイページ</h1>
+<h1>マイページ</h1>
+<h2>登録情報</h2>
+
+<%= link_to edit_end_users_path do %>
+  <h2>編集する</h2>
+<% end %>
+
+<%= link_to root_path do %>
+  <h2>パスワードを変更する</h2>
+<% end %>
+
+<table>
+  <tr>
+    <td>氏名</td>
+    <td><%= @end_user.first_name %><%= @end_user.last_name %></td>
+  </tr>
+  <tr>
+    <td>カナ</td>
+    <td><%= @end_user.first_name_kana %><%= @end_user.last_name_kana %></td>
+  </tr>
+  <tr>
+    <td>郵便番号</td>
+    <td><%= @end_user.zip_code %></td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= @end_user.address %></td>
+  </tr>
+  <tr>
+    <td>電話番号</td>
+    <td><%= @end_user.telephone_number %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td><%= @end_user.email %></td>
+  </tr>
+</table>
+
+<h2>配送先</h2>
+
+<%= link_to root_path do %>
+  <h2>一覧を見る</h2>
+<% end %>
+
+<h1>注文履歴</h1>
+
+<%= link_to root_path do %>
+  <h2>一覧を見る</h2>
+<% end %>

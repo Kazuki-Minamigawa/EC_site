@@ -11,18 +11,24 @@
 
   <body>
     <header class="navbar navbar-inverse">
+      <% if flash[:notice] %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
           <span style="color: white;"></span>
-          <%= link_to root_path do %>
-            <h1>LOGO</h1>
-          <% end %>
           <nav>
             <ul class="nav navbar-nav navbar-right">
               <% if end_user_signed_in? %>
 
+                <%= link_to end_users_path do %>
+                  <h1>LOGO</h1>
+                <% end %>
+
                 <li>
-                  <%= link_to "マイページ" %>
+                  <%= link_to "マイページ", end_users_path %>
                 </li>
 
                 <li>
@@ -39,12 +45,16 @@
 
               <% elsif admin_signed_in? %>
 
+                <%= link_to admin_top_path do %>
+                  <h1>LOGO</h1>
+                <% end %>
+
                 <li>
                   <%= link_to "商品一覧" %>
                 </li>
 
                 <li>
-                  <%= link_to "会員一覧" %>
+                  <%= link_to "会員一覧", admin_end_users_path %>
                 </li>
 
                 <li>
@@ -60,6 +70,11 @@
                 </li>
 
               <% else %>
+
+                <%= link_to root_path do %>
+                  <h1>LOGO</h1>
+                <% end %>
+
                 <li>
                   <%= link_to "商品一覧" %>
                 </li>

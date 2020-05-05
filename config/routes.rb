@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resource :end_users, only: [:show, :edit, :update]
+    get "/end_users/edit/unsubscribe" => "end_users#unsubscribe"
+    patch "/end_users/hide" => "end_users#hide"
+    put "/end_users/hide" => "end_users#hide"
+
+
+
   devise_for :admins
   devise_for :end_users
 
@@ -6,9 +13,9 @@ Rails.application.routes.draw do
   root "items#top"
 
   resources :items, only: [:top, :index, :show]
-  resource :end_users, only: [:show]
 
   namespace :admin do
     get "/top" => "tops#top"
+    resources :end_users, only: [:index]
   end
 end

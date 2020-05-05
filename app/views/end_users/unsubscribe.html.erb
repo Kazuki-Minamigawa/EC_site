@@ -1,0 +1,20 @@
+<h1>本当に退会しますか？</h1>
+<div class="unsubscribe_text">
+  <p>
+    退会すると、会員登録情報や<br>
+    これまでの購入履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
+</div>
+
+<div class="no_subscribe">
+  <%= link_to end_users_path do %>
+    <p>退会しない</p>
+  <% end %>
+</div>
+
+<div class="unsubscribe">
+  <% if end_user_signed_in? && @end_user.id == current_end_user.id %>
+    <%= button_to "退会する", end_users_hide_path, data: { confirm: "本当によろしいですか？" }, method: :put %>
+  <% end %>
+</div>
