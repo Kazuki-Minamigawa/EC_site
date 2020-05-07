@@ -1,0 +1,25 @@
+<h1>ジャンル一覧・追加</h1>
+<span>ジャンル名</span>
+<%= form_with model: @genre, url: admin_genres_path do |f| %>
+  <%= f.text_field :name %>
+  <%= f.radio_button :is_allowed, :true, checked: true %>
+  <%= f.label :is_allowed, "有効", {value: :true, style: "display: inline-block;"} %>
+  <%= f.radio_button :is_allowed, :false %>
+  <%= f.label :is_allowed, "無効", {value: :false, style: "display: inline-block;"} %>
+  <%= f.submit '追加' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>ジャンル</th>
+    <th>状態</th>
+    <th></th>
+  </tr>
+  <% @genres.each do |genre| %>
+    <tr>
+      <td><%= genre.name %></td>
+      <td><%= genre.is_allowed %></td>
+      <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
+    </tr>
+  <% end %>
+</table>

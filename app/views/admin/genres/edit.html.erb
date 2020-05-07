@@ -1,0 +1,10 @@
+<h1>ジャンル編集</h1>
+<%= form_with model: @genre, url: admin_genre_path(@genre.id) do |f| %>
+  <span>ジャンル</span>
+  <span><%= f.text_field :name %></span>
+  <%= f.radio_button :is_allowed, :true, checked: true %>
+  <%= f.label :is_allowed, "有効", {value: :true, style: "display: inline-block;"} %>
+  <%= f.radio_button :is_allowed, :false %>
+  <%= f.label :is_allowed, "無効", {value: :false, style: "display: inline-block;"} %>
+  <%= f.submit '変更を保存する' %>
+<% end %>

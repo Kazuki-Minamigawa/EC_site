@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_143140) do
+ActiveRecord::Schema.define(version: 2020_05_06_095410) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +47,24 @@ ActiveRecord::Schema.define(version: 2020_05_01_143140) do
     t.index ["last_name_kana"], name: "index_end_users_on_last_name_kana"
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
     t.index ["zip_code"], name: "index_end_users_on_zip_code"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_allowed", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.boolean "is_sold", default: true, null: false
+    t.integer "no_tax_price", null: false
+    t.string "image_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

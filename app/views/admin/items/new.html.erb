@@ -1,0 +1,38 @@
+<%= form_with model: @item, url: admin_items_path do |f| %>
+
+  <div class="field">
+    <%= f.attachment_field :image %>
+  </div>
+
+  <div class="field">
+    <h3>商品名</h3>
+    <h3><%= f.text_field :name, autofocus: true, autocomplete: "name" %></h3>
+  </div>
+
+  <div class="field">
+    <h3>商品説明</h3>
+    <h3><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %></h3>
+  </div>
+
+  <div class="field">
+    <h3>ジャンル</h3>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <h3>税抜価格</h3>
+    <h3><%= f.text_field :no_tax_price, autofocus: true, autocomplete: "no_tax_price" %>円</h3>
+  </div>
+
+  <div class="field">
+    <h3>販売ステータス</h3>
+    <%= f.radio_button :is_sold, :true, checked: true %>
+    <%= f.label :is_sold, "販売中", {value: :true, style: "display: inline-block;"} %>
+    <%= f.radio_button :is_sold, :false %>
+    <%= f.label :is_sold, "売り切れ", {value: :false, style: "display: inline-block;"} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
