@@ -18,7 +18,11 @@
       <td><%= item.name %></td>
       <td><%= item.no_tax_price %></td>
       <td><%= item.genre.name %></td>
-      <td><%= item.is_sold %></td>
+      <% if item.is_sold == true %>
+        <td><%= "販売中" %></td>
+      <% elsif item.is_sold == false %>
+        <td><%= "売り切れ" %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

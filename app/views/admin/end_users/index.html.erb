@@ -14,7 +14,11 @@
       <td><%= end_user.id %></td>
       <td><%= end_user.first_name %><%= end_user.last_name %></td>
       <td><%= end_user.email %></td>
-      <td><%= end_user.is_unsubscribed %></td>
+      <% if end_user.is_unsubscribed == true %>
+        <td><%= "有効" %></td>
+      <% elsif end_user.is_unsubscribed == false %>
+        <td><%= "退会" %></td>
+      <% end %>
     </tr>
   <% end %>
 

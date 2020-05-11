@@ -1,0 +1,11 @@
+
+  <h1><%= @item.name %></h1>
+  <p><%= attachment_image_tag @item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
+  <p><%= @item.introduction %></p>
+  <h2>¥<%= (@item.no_tax_price * 1.1).round %>(税込)</h2>
+<%= form_for(@cart_item) do |f| %>
+  <%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], include_blank: "個数選択" %>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+  <%= f.submit 'カートに入れる' %>
+<% end %>

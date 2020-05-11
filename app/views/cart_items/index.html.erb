@@ -1,0 +1,52 @@
+<h1><span>ショッピングカート</span></h1>
+<%= link_to "カートを空にする", cart_items_path, method: :delete, "data-confirm" => "本当に全て削除しますか？" %>
+
+<table>
+
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th></th>
+  </tr>
+
+  <% @sum = 0 %>
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td>
+        <%= attachment_image_tag cart_item.item, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= cart_item.item.name %>
+      </td>
+      <td>
+        <%= (cart_item.item.no_tax_price * 1.1).round %>
+      </td>
+      <td>
+        <%= form_with model: cart_item, url: cart_item_path(cart_item.id) do |f| %>
+          <%= f.text_field :amount %>
+          <%= f.submit '変更' %>
+        <% end %>
+      </td>
+      <td>
+        <%= (cart_item.item.no_tax_price * 1.1).round * cart_item.amount %>
+      </td>
+      <td>
+        <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </td>
+      <td>
+        <% @sum += (cart_item.item.no_tax_price * 1.1).round * cart_item.amount %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to root_path do %>
+  <h2>買い物を続ける</h2>
+<% end %>
+
+<table>
+  <tr>
+    <td>合計金額</td>
+    <td><%= @sum %>円</td>
+  </tr>
+</table>
