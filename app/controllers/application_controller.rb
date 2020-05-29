@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def correct_user
+    @correct_end_user = current_end_user
+      unless @correct_end_user
+        redirect_to root_path
+      end
+  end
+
   def after_sign_in_path_for(resource)
     case resource
       when EndUser

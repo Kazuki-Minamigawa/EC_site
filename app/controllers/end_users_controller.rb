@@ -1,4 +1,5 @@
 class EndUsersController < ApplicationController
+  before_action :correct_user
   def show
     @end_user = current_end_user
   end

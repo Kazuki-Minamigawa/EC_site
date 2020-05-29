@@ -1,11 +1,12 @@
 class CartItemsController < ApplicationController
+  before_action :correct_user
   def index
     @cart_items = CartItem.where(end_user_id: current_end_user.id)
   end
 
   def create
     @cart_item = CartItem.new(cart_item_params)
-    if cart_item = CartItem.find_by(item_id: @cart_item.item_id)
+    if cart_item = CartItem.find_by(end_user_id: current_end_user.id, item_id: @cart_item.item_id)
       cart_item.amount += @cart_item.amount
       cart_item.save
     else
@@ -17,7 +18,7 @@ class CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
-    flash[:notice] = "カート内の数量をを変更しました。"
+    flash[:notice] = "カート内の数量を変更しました。"
     redirect_to cart_items_path
   end
 

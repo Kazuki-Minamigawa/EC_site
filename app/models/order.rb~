@@ -1,0 +1,6 @@
+class Order < ApplicationRecord
+  belongs_to :end_user
+
+  enum payment_method: {card:0, bank:1}
+  enum ordered_process: {wait:0, check:1, now:2, ready:3, send:4}
+end

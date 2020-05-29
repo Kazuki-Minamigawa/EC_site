@@ -1,0 +1,44 @@
+<h1>注文情報入力</h1>
+
+<%= form_with model: @order, url: orders_check_path, method: :post,local: true do |f| %>
+  <h2>支払方法</h2>
+  <%= f.radio_button :payment_method, :card, checked: true %>
+  <%= f.label :payment_method, "クレジットカード", {value: :card, style: "display: inline-block;"} %>
+  <%= f.radio_button :payment_method, :bank %>
+  <%= f.label :payment_method, "銀行振込", {value: :bank, style: "display: inline-block;"} %>
+
+  <h2>お届け先</h2>
+  <%= f.radio_button :address_option, 0, checked: true %>
+  <%= f.label :address_option, "ご自身の住所", {value: :card, style: "display: inline-block;"} %><br>
+  <%= current_end_user.zip_code %><br>
+  <%= current_end_user.address %><br>
+  <%= current_end_user.first_name %><%= current_end_user.last_name %><br>
+  <br>
+
+  <%= f.radio_button :address_option, 1 %>
+  <%= f.label :address_option, "登録済み住所から選択", {value: :card, style: "display: inline-block;"} %>
+  <%= f.collection_select :address_id, Address.all, :id, :full_address, include_blank: "選択して下さい" %><br>
+  <br>
+
+  <%= f.radio_button :address_option, 2 %>
+  <%= f.label :address_option, "新規住所", {value: :card, style: "display: inline-block;"} %>
+    <table>
+      <tr>
+        <td>郵便番号(ハイフンなし)</td>
+        <td>
+          <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code" %><br>
+        </td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+      </tr>
+    </table>
+    <br>
+
+  <%= f.submit '確認画面へ進む' %>
+<% end %>

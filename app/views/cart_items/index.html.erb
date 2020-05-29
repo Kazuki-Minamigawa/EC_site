@@ -15,7 +15,7 @@
   <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
-        <%= attachment_image_tag cart_item.item, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
         <%= cart_item.item.name %>
       </td>
       <td>
@@ -50,3 +50,7 @@
     <td><%= @sum %>円</td>
   </tr>
 </table>
+
+<%= link_to new_order_path do %>
+  <h2>情報入力に進む</h2>
+<% end %>
