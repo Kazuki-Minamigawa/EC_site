@@ -22,6 +22,7 @@
   </tr>
   <% end %>
 </table>
+<br>
 
 <table>
   <tr>
@@ -32,12 +33,14 @@
     <th>製作ステータス</th>
     <th></th>
   </tr>
+  <% @sum = 0 %>
   <% @order_details.each do |order_detail| %>
     <tr>
       <td><%= order_detail.item.name %></td>
       <td><%= (order_detail.tax_price * 1.1).round %></td>
       <td><%= order_detail.item_amount %></td>
       <td><%= (order_detail.tax_price * 1.1).round * order_detail.item_amount %></td>
+      <% @sum += (order_detail.tax_price * 1.1).round * order_detail.item_amount %>
       <td>
         <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
           <%= f.select :made_process, OrderDetail.made_processes.keys.map {|k| [I18n.t("enums.order_detail.made_process.#{k}"), k]} %>
@@ -46,4 +49,21 @@
       </td>
     </tr>
   <% end %>
+</table>
+<br>
+
+<table>
+  <tr>
+    <td>商品合計</td>
+    <td><%= @sum %></td>
+  </tr>
+  <tr>
+    <td>送料</td>
+    <td><%= @order.postage %></td>
+  </tr>
+  <tr>
+    <td>請求金額合計</td>
+    <% @total_price = @sum + @order.postage %>
+    <td><%= @total_price %></td>
+  </tr>
 </table>

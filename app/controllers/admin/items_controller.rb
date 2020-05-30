@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
-
+    @items = @items.where('name LIKE ?', "%#{params[:item_key]}%") if params[:item_key].present?
   end
 
   def new

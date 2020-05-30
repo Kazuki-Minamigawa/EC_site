@@ -65,5 +65,5 @@
   <%= f.hidden_field :end_user_id, value: current_end_user.id %>
   <%= f.hidden_field :ordered_process, value: @order.ordered_process %>
 
-  <%= f.submit '購入を確定する' %>
+  <%= f.submit '購入を確定する', method: :post, "data-confirm" => "購入を確定しますか？" %> 
 <% end %>

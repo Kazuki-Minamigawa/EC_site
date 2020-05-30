@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
   before_action :correct_user
   def new
-    @order = Order.new
+    if current_end_user.cart_items.find_by(end_user_id: current_end_user)
+      @order = Order.new
+    else
+      flash[:notice] = "カート内に商品が存在しません。"
+      redirect_to items_path
+    end
   end
 
   def check #post

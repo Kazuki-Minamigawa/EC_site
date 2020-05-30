@@ -69,6 +69,12 @@
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                 </li>
 
+                <%= form_with url: admin_items_path, method: :get, local: true do |f| %>
+                  <%= f.label :item_key, '商品検索' %><br>
+                  <%= f.text_field :item_key %>
+                  <%= f.submit '検索' %>
+                <% end %>
+
               <% else %>
 
                 <%= link_to root_path do %>
