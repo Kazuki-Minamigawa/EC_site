@@ -1,9 +1,12 @@
-<h1>商品一覧(全<%= @items.count %>件)</h1>
-
-<% @items.each do |item| %>
-  <div class="item">
-    <p><%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
-    <p><%= link_to item.name, item_path(item.id) %></p>
-    <p>￥<%= item.no_tax_price %></p>
+<div class="container">
+  <div class="row">
+    <h2>商品一覧(全<%= @items.count %>件)</h2><br>
+    <% @items.each do |item| %>
+      <div class="col-md-4">
+        <p><%= attachment_image_tag item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %></p>
+        <h3><%= link_to item.name, item_path(item.id) %></h3>
+        <h4>￥<%= item.no_tax_price %></h4>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

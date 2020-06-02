@@ -1,71 +1,73 @@
-<h2>登録情報編集</h2>
-
-<div class="error_messages">
-  <% if @end_user.errors.any? %>
-    <div class="error_explanation">
-      <h2><%= @end_user.errors.count %>errors prohibited this book from being saved:</h2>
-      <ul>
-        <% @end_user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div class="container">
+  <h2>登録情報編集</h2><br>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <div class="error_messages">
+        <% if @end_user.errors.any? %>
+          <div class="error_explanation">
+            <h2><%= @end_user.errors.count %>errors prohibited this book from being saved:</h2>
+            <ul>
+              <% @end_user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+      </div>
+
+      <%= form_for(@end_user, url: "/end_users") do |f| %>
+
+        <table class="table table-striped">
+
+          <tr>
+            <td>氏名</td>
+            <td>
+              <span>(姓)</span><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %><span>(名)</span><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td>カナ</td>
+            <td>
+              <span>(セイ)</span><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %><span>(メイ)</span><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td>メールアドレス</td>
+            <td>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td>郵便番号(ハイフンなし)</td>
+            <td>
+              <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code" %><br>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+          </tr>
+
+          <tr>
+            <td>電話番号(ハイフンなし)</td>
+            <td><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></td>
+          </tr>
+
+        </table>
+
+        <div class="update">
+            <%= f.submit "編集内容を保存する" %>
+        </div>
+        <br>
+        <%= link_to end_users_edit_unsubscribe_path do %>
+          <button class="btn btn-danger">退会する</button>
+        <% end %>
+      <% end %>
+      
     </div>
-  <% end %>
-</div>
-
-<%= form_for(@end_user, url: "/end_users") do |f| %>
-
-  <table>
-
-    <tr>
-      <td>氏名</td>
-      <td>
-        <span>(姓)</span><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %><span>(名)</span><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %><br>
-      </td>
-    </tr>
-
-    <tr>
-      <td>カナ</td>
-      <td>
-        <span>(セイ)</span><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %><span>(メイ)</span><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %><br>
-      </td>
-    </tr>
-
-    <tr>
-      <td>メールアドレス</td>
-      <td>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br>
-      </td>
-    </tr>
-
-    <tr>
-      <td>郵便番号(ハイフンなし)</td>
-      <td>
-        <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code" %><br>
-      </td>
-    </tr>
-
-
-    <tr>
-      <td>住所</td>
-      <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
-    </tr>
-
-    <tr>
-      <td>電話番号(ハイフンなし)</td>
-      <td><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></td>
-    </tr>
-
-  </table>
-
-  <div class="update">
-      <%= f.submit "編集内容を保存する" %>
   </div>
-
-  <div class="unsubscribe">
-    <%= link_to end_users_edit_unsubscribe_path do %>
-      <p>退会する</p>
-    <% end %>
-  </div>
-
-<% end %>

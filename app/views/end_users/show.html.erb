@@ -1,49 +1,74 @@
-<h1>マイページ</h1>
-<h2>登録情報</h2>
+<div class="container">
+  <h2>マイページ</h2>
 
-<%= link_to edit_end_users_path do %>
-  <h2>編集する</h2>
-<% end %>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <table>
+        <tr>
+          <td><h3>登録情報　　</h3></td>
+          <td><%= link_to edit_end_users_path do %>
+            <button class="btn btn-primary"><h4>編集する</h4></button>
+          <% end %></td>
+        </tr>
+      </table>
+    </div>
+  </div><br>
 
-<%= link_to root_path do %>
-  <h2>パスワードを変更する</h2>
-<% end %>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <table class="table table-striped">
+        <tr>
+          <td>氏名</td>
+          <td><%= @end_user.first_name %><%= @end_user.last_name %></td>
+        </tr>
+        <tr>
+          <td>カナ</td>
+          <td><%= @end_user.first_name_kana %><%= @end_user.last_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= @end_user.zip_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @end_user.address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @end_user.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @end_user.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <td>氏名</td>
-    <td><%= @end_user.first_name %><%= @end_user.last_name %></td>
-  </tr>
-  <tr>
-    <td>カナ</td>
-    <td><%= @end_user.first_name_kana %><%= @end_user.last_name_kana %></td>
-  </tr>
-  <tr>
-    <td>郵便番号</td>
-    <td><%= @end_user.zip_code %></td>
-  </tr>
-  <tr>
-    <td>住所</td>
-    <td><%= @end_user.address %></td>
-  </tr>
-  <tr>
-    <td>電話番号</td>
-    <td><%= @end_user.telephone_number %></td>
-  </tr>
-  <tr>
-    <td>メールアドレス</td>
-    <td><%= @end_user.email %></td>
-  </tr>
-</table>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <table>
+        <tr>
+          <td><h3>配送先　　</h3></td>
+          <td><%= link_to addresses_path do %>
+            <button class="btn btn-primary"><h4>一覧を見る</h4></button>
+          <% end %></td>
+        </tr>
+      </table>
+    </div>
+  </div><br>
 
-<h2>配送先</h2>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <table>
+        <tr>
+          <td><h3>注文履歴　　</h3></td>
+          <td><%= link_to "" do %>
+            <button class="btn btn-primary"><h4>一覧を見る</h4></button>
+          <% end %><td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-<%= link_to addresses_path do %>
-  <h2>一覧を見る</h2>
-<% end %>
-
-<h1>注文履歴</h1>
-
-<%= link_to orders_path do %>
-  <h2>一覧を見る</h2>
-<% end %>
+</div>

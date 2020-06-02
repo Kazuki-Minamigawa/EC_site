@@ -7,11 +7,11 @@
   </p>
 </div>
 
-<div class="no_subscribe">
+<h5 class="no_subscribe">
   <%= link_to end_users_path do %>
     <p>退会しない</p>
   <% end %>
-</div>
+</h5>
 
 <div class="unsubscribe">
   <% if end_user_signed_in? && @end_user.id == current_end_user.id %>

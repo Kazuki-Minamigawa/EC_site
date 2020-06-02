@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
+    <title>Cake Shop</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,93 +11,96 @@
 
   <body>
     <header class="navbar navbar-inverse">
-      <% if flash[:notice] %>
-        <div class="flash">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
-          <span style="color: white;"></span>
-          <nav>
-            <ul class="nav navbar-nav navbar-right">
-              <% if end_user_signed_in? %>
+          <% if end_user_signed_in? %>
+            <%= link_to end_users_path do %>
+              <span style="color: orange;"><h3>Cake Shop</h3></span>
+            <% end %>
+          <% elsif admin_signed_in? %>
+            <%= link_to admin_top_path do %>
+              <span style="color: orange;"><h3>Cake Shop</h3></span>
+            <% end %>
+          <% else %>
+            <%= link_to root_path do %>
+              <span style="color: orange;"><h3>Cake Shop</h3></span>
+            <% end %>
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if end_user_signed_in? %>
 
-                <%= link_to end_users_path do %>
-                  <h1>LOGO</h1>
-                <% end %>
+              <li>
+                <%= link_to "マイページ", end_users_path %>
+              </li>
 
-                <li>
-                  <%= link_to "マイページ", end_users_path %>
-                </li>
+              <li>
+                <%= link_to "商品一覧", items_path %>
+              </li>
 
-                <li>
-                  <%= link_to "商品一覧", items_path %>
-                </li>
+              <li>
+                <%= link_to "カート", cart_items_path %>
+              </li>
 
-                <li>
-                  <%= link_to "カート", cart_items_path %>
-                </li>
+              <li>
+                <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
+              </li>
 
-                <li>
-                  <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
-                </li>
+            <% elsif admin_signed_in? %>
 
-              <% elsif admin_signed_in? %>
+              <li>
+                <%= link_to "商品一覧", admin_items_path %>
+              </li>
 
-                <%= link_to admin_top_path do %>
-                  <h1>LOGO</h1>
-                <% end %>
+              <li>
+                <%= link_to "会員一覧", admin_end_users_path %>
+              </li>
 
-                <li>
-                  <%= link_to "商品一覧", admin_items_path %>
-                </li>
+              <li>
+                <%= link_to "注文履歴一覧", admin_orders_path %>
+              </li>
 
-                <li>
-                  <%= link_to "会員一覧", admin_end_users_path %>
-                </li>
+              <li>
+                <%= link_to "ジャンル一覧", admin_genres_path %>
+              </li>
 
-                <li>
-                  <%= link_to "注文履歴一覧", admin_orders_path %>
-                </li>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
 
-                <li>
-                  <%= link_to "ジャンル一覧", admin_genres_path %>
-                </li>
-
-                <li>
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-                </li>
-
+              <li class="text-muted">
                 <%= form_with url: admin_items_path, method: :get, local: true do |f| %>
                   <%= f.label :item_key, '商品検索' %><br>
                   <%= f.text_field :item_key %>
                   <%= f.submit '検索' %>
                 <% end %>
+              </li>
 
-              <% else %>
+            <% else %>
 
-                <%= link_to root_path do %>
-                  <h1>LOGO</h1>
-                <% end %>
+              <li>
+                <%= link_to "商品一覧", items_path %>
+              </li>
 
-                <li>
-                  <%= link_to "商品一覧", items_path %>
-                </li>
+              <li>
+                <%= link_to "新規登録", new_end_user_registration_path %>
+              </li>
 
-                <li>
-                  <%= link_to "新規登録", new_end_user_registration_path %>
-                </li>
-
-                <li>
-                  <%= link_to "ログイン", new_end_user_session_path %>
-                </li>
-              <% end %>
-            </ul>
-          </nav>
+              <li>
+                <%= link_to "ログイン", new_end_user_session_path %>
+              </li>
+            <% end %>
+          </ul>
         </nav>
       </div>
     </header>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
     <%= yield %>
 

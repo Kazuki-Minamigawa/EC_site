@@ -1,1 +1,31 @@
-<h1>エンドユーザー＃トップページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <h3>
+        ようこそCake Shopへ！<br>
+        このサイトはケーキ販売のECサイトとなります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+      </h3>
+      <div class="btn-wrapper">
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <button class="btn btn-info btn-block">
+              <%= link_to "ログイン", new_end_user_session_path %>
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <button class="btn btn-success btn-block">
+              <%= link_to "新規登録", new_end_user_registration_path %>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,24 @@
-<h1>配送先編集</h1>
+<div class="container">
+  <h1>配送先編集</h1><br>
 
-<%= form_for(@address) do |f| %>
-  <table>
-    <tr>
-      <td>郵便番号(ハイフンなし)</td>
-      <td><%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code" %></td>
-    </tr>
-    <tr>
-      <td>住所</td>
-      <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
-    </tr>
-    <tr>
-      <td>宛名</td>
-      <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
-    </tr>
-  </table>
-  <%= f.submit '編集する' %>
-<% end %>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <%= form_for(@address) do |f| %>
+        <table class="table table-striped">
+          <tr>
+            <td>郵便番号(ハイフンなし)</td>
+            <td><%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code" %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+          </tr>
+          <tr>
+            <td>宛名</td>
+            <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+          </tr>
+        </table>
+        <%= f.submit '編集する' %>
+      <% end %>
+    </div>
+  </div>

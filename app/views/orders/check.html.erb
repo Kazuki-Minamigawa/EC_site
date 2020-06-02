@@ -1,69 +1,74 @@
-<h1>注文情報確認</h1>
-<table>
+<div class="container">
+  <h1>注文情報確認</h1><br>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <table class="table table-striped">
 
-  <tr>
-    <th>商品名</th>
-    <th>単価(税込)</th>
-    <th>数量</th>
-    <th>小計</th>
-  </tr>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
 
-  <% @sum = 0 %>
-    <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td>
-          <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-          <%= cart_item.item.name %>
-        </td>
-        <td>
-          <%= (cart_item.item.no_tax_price * 1.1).round %>
-        </td>
-        <td>
-          <%= cart_item.amount %>
-        </td>
-        <td>
-          <%= (cart_item.item.no_tax_price * 1.1).round * cart_item.amount %>
-          <% @sum += (cart_item.item.no_tax_price * 1.1).round * cart_item.amount %>
-        </td>
-      </tr>
-    <% end %>
-</table>
-<br>
+        <% @sum = 0 %>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                <%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+                <%= cart_item.item.name %>
+              </td>
+              <td>
+                <%= (cart_item.item.no_tax_price * 1.1).round %>
+              </td>
+              <td>
+                <%= cart_item.amount %>
+              </td>
+              <td>
+                <%= (cart_item.item.no_tax_price * 1.1).round * cart_item.amount %>
+                <% @sum += (cart_item.item.no_tax_price * 1.1).round * cart_item.amount %>
+              </td>
+            </tr>
+          <% end %>
+      </table><br>
 
-<%= form_with model: @order_second, url: orders_check_thanks_path do |f| %>
-  <table>
-    <tr>
-      <td>送料</td>
-      <td><%= @order.postage %></td>
-      <%= f.hidden_field :postage, value: @order.postage %>
-    </tr>
-    <tr>
-      <td>商品合計</td>
-      <td><%= @sum %></td>
-    </tr>
-    <tr>
-      <td>請求合計</td>
-      <% @total_price = @sum + @order.postage %>
-      <td><%= @total_price %></td>
-      <%= f.hidden_field :total_price, value: @total_price %>
-    </tr>
-  </table>
+      <%= form_with model: @order_second, url: orders_check_thanks_path do |f| %>
+        <table class="table table-striped">
+          <tr>
+            <td>送料</td>
+            <td><%= @order.postage %></td>
+            <%= f.hidden_field :postage, value: @order.postage %>
+          </tr>
+          <tr>
+            <td>商品合計</td>
+            <td><%= @sum %></td>
+          </tr>
+          <tr>
+            <td>請求合計</td>
+            <% @total_price = @sum + @order.postage %>
+            <td><%= @total_price %></td>
+            <%= f.hidden_field :total_price, value: @total_price %>
+          </tr>
+        </table>
 
-  <h2>支払方法</h2>
-  <%= @order.payment_method_i18n %>
-  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+        <h2>支払方法</h2>
+        <h4><%= @order.payment_method_i18n %></h4>
+        <%= f.hidden_field :payment_method, value: @order.payment_method %>
 
 
-  <h2>お届け先</h2>
-  <%= @order.zip_code %><br>
-  <%= f.hidden_field :zip_code, value: @order.zip_code %>
-  <%= @order.address %><br>
-  <%= f.hidden_field :address, value: @order.address %>
-  <%= @order.name %><br>
-  <%= f.hidden_field :name, value: @order.name %>
+        <h2>お届け先</h2>
+        <h4><%= @order.zip_code %></h4>
+        <%= f.hidden_field :zip_code, value: @order.zip_code %>
+        <h4><%= @order.address %></h4>
+        <%= f.hidden_field :address, value: @order.address %>
+        <h4><%= @order.name %></h4><br>
+        <%= f.hidden_field :name, value: @order.name %>
 
-  <%= f.hidden_field :end_user_id, value: current_end_user.id %>
-  <%= f.hidden_field :ordered_process, value: @order.ordered_process %>
+        <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+        <%= f.hidden_field :ordered_process, value: @order.ordered_process %>
 
-  <%= f.submit '購入を確定する', method: :post, "data-confirm" => "購入を確定しますか？" %> 
-<% end %>
+        <%= f.submit '購入を確定する', method: :post, "data-confirm" => "購入を確定しますか？" %>
+      <% end %>
+    </div>
+  </div>
+</div>

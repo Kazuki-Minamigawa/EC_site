@@ -10,11 +10,11 @@ Admin.create!(
   password: "wwwwww"
 )
 Genre.create!(
-  name: "ジャンル名",
+  name: "ケーキ",
 )
 Item.create!(
   genre_id: 1,
-  name: "商品名",
-  introduction: "商品説明文",
+  name: "ショートケーキ",
+  introduction: "イチゴがのったショートケーキです。",
   no_tax_price: 500,
 )
