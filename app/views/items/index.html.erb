@@ -3,7 +3,7 @@
     <h2>商品一覧(全<%= @items.count %>件)</h2><br>
     <% @items.each do |item| %>
       <div class="col-md-4">
-        <p><%= attachment_image_tag item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %></p>
+        <p><%= attachment_image_tag item, :image, :fill, 300, 300, format: 'jpeg', fallback: "cake.jpg", size:'300x300' %></p>
         <h3><%= link_to item.name, item_path(item.id) %></h3>
         <h4>￥<%= item.no_tax_price %></h4>
       </div>

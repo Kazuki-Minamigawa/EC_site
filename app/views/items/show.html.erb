@@ -2,7 +2,7 @@
   <h2>商品詳細ページ</h2><br>
   <div class="row">
     <div class="col-md-4">
-      <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+      <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', fallback: "cake.jpg", size:'300x300' %>
     </div>
     <div class="col-md-8">
       <h1><%= @item.name %></h1><br>

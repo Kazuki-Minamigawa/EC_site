@@ -15,15 +15,15 @@
         <nav class="nav navbar-nav navbar-left">
           <% if end_user_signed_in? %>
             <%= link_to end_users_path do %>
-              <span style="color: orange;"><h3>Cake Shop</h3></span>
+              <span style="color: pink;"><h3>Cake Shop</h3></span>
             <% end %>
           <% elsif admin_signed_in? %>
             <%= link_to admin_top_path do %>
-              <span style="color: orange;"><h3>Cake Shop</h3></span>
+              <span style="color: pink;"><h3>Cake Shop</h3></span>
             <% end %>
           <% else %>
             <%= link_to root_path do %>
-              <span style="color: orange;"><h3>Cake Shop</h3></span>
+              <span style="color: pink;"><h3>Cake Shop</h3></span>
             <% end %>
           <% end %>
         </nav>

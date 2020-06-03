@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :correct_user, only: [:show]
   def top
   end
 
@@ -9,7 +10,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
-    
+
   end
 
   private
